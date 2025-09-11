@@ -1,87 +1,222 @@
-# eslint-config-airbnb
+# @tanqory/eslint-config
 
-[![npm version](https://badge.fury.io/js/eslint-config-airbnb.svg)](https://badge.fury.io/js/eslint-config-airbnb)
+[![npm version](https://badge.fury.io/js/%40tanqory%2Feslint-config.svg)](https://www.npmjs.com/package/@tanqory/eslint-config)
+[![Downloads](https://img.shields.io/npm/dm/@tanqory/eslint-config.svg)](https://www.npmjs.com/package/@tanqory/eslint-config)
 
-This package provides Airbnb's .eslintrc as an extensible shared config.
+This package provides Tanqory's ESLint configuration with React support as an extensible shared config.
+
+## Installation
+
+```bash
+npm install --save-dev @tanqory/eslint-config
+```
+
+### Peer Dependencies
+
+```bash
+npm install --save-dev \
+  eslint@^8.2.0 \
+  eslint-plugin-import@^2.30.0 \
+  eslint-plugin-jsx-a11y@^6.10.0 \
+  eslint-plugin-react@^7.36.1 \
+  eslint-plugin-react-hooks@^5.1.0
+```
 
 ## Usage
 
-We export three ESLint configurations for your usage.
+Add to your `.eslintrc.json`:
 
-### eslint-config-airbnb
+```json
+{
+  "extends": "@tanqory/eslint-config"
+}
+```
 
-Our default export contains most of our ESLint rules, including ECMAScript 6+ and React. It requires `eslint`, `eslint-plugin-import`, `eslint-plugin-react`, `eslint-plugin-react-hooks`, and `eslint-plugin-jsx-a11y`. Note that it does not enable our React Hooks rules. To enable those, see the [`eslint-config-airbnb/hooks` section](#eslint-config-airbnbhooks).
+### Using with Next.js
 
-If you don't need React, see [eslint-config-airbnb-base](https://npmjs.com/eslint-config-airbnb-base).
+```json
+{
+  "extends": [
+    "@tanqory/eslint-config",
+    "next/core-web-vitals"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off"
+  }
+}
+```
 
-1. Install the correct versions of each package, which are listed by the command:
+### Using with TypeScript
 
-  ```sh
-  npm info "eslint-config-airbnb@latest" peerDependencies
-  ```
+```json
+{
+  "extends": [
+    "@tanqory/eslint-config",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}
+```
 
-  If using **npm 5+**, use this shortcut
+## What's Included?
 
-  ```sh
-  npx install-peerdeps --dev eslint-config-airbnb
-  ```
+This configuration extends `@tanqory/eslint-config-base` and adds:
 
-  If using **yarn**, you can also use the shortcut described above if you have npm 5+ installed on your machine, as the command will detect that you are using yarn and will act accordingly.
-  Otherwise, run `npm info "eslint-config-airbnb@latest" peerDependencies` to list the peer dependencies and versions, then run `yarn add --dev <dependency>@<version>` for each listed peer dependency.
+- **React Support**: Best practices for React development
+- **React Hooks**: Rules for proper hooks usage
+- **JSX Accessibility**: Ensure accessible React components
+- **Import Validation**: React-specific import rules
 
-  If using **npm < 5**, Linux/OSX users can run
+### React-Specific Rules
 
-  ```sh
-  (
-    export PKG=eslint-config-airbnb;
-    npm info "$PKG@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$PKG@latest"
-  )
-  ```
+1. **React Best Practices** (`rules/react.js`)
+   - Enforce prop types validation
+   - Prevent missing key props in iterators
+   - Enforce JSX boolean value notation
+   - Prevent direct state mutation
 
-  Which produces and runs a command like:
+2. **React Hooks** (`rules/react-hooks.js`)
+   - Rules of Hooks enforcement
+   - Exhaustive dependencies check
+   - Custom hooks naming convention
 
-  ```sh
-  npm install --save-dev eslint-config-airbnb eslint@^#.#.# eslint-plugin-jsx-a11y@^#.#.# eslint-plugin-import@^#.#.# eslint-plugin-react@^#.#.# eslint-plugin-react-hooks@^#.#.#
-  ```
+3. **JSX Accessibility** (`rules/react-a11y.js`)
+   - Alt text for images
+   - ARIA roles validation
+   - Interactive element accessibility
+   - Label associations for form controls
 
-  If using **npm < 5**, Windows users can either install all the peer dependencies manually, or use the [install-peerdeps](https://github.com/nathanhleung/install-peerdeps) cli tool.
+## Alternative Configurations
 
-  ```sh
-  npm install -g install-peerdeps
-  install-peerdeps --dev eslint-config-airbnb
-  ```
-  The cli will produce and run a command like:
+### Without React Hooks
 
-  ```sh
-  npm install --save-dev eslint-config-airbnb eslint@^#.#.# eslint-plugin-jsx-a11y@^#.#.# eslint-plugin-import@^#.#.# eslint-plugin-react@^#.#.# eslint-plugin-react-hooks@^#.#.#
-  ```
+For projects not using React Hooks:
 
-2. Add `"extends": "airbnb"` to your `.eslintrc`
+```json
+{
+  "extends": "@tanqory/eslint-config/base"
+}
+```
 
-### eslint-config-airbnb/hooks
+### Hooks Only
 
-This entry point enables the linting rules for React hooks (requires v16.8+). To use, add `"extends": ["airbnb", "airbnb/hooks"]` to your `.eslintrc`.
+For projects that only want React Hooks rules:
 
-### eslint-config-airbnb/whitespace
+```json
+{
+  "extends": "@tanqory/eslint-config/hooks"
+}
+```
 
-This entry point only errors on whitespace rules and sets all other rules to warnings. View the list of whitespace rules [here](https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb/whitespace.js).
+### Legacy
 
-### eslint-config-airbnb/base
+For legacy projects:
 
-This entry point is deprecated. See [eslint-config-airbnb-base](https://npmjs.com/eslint-config-airbnb-base).
+```json
+{
+  "extends": "@tanqory/eslint-config/legacy"
+}
+```
 
-### eslint-config-airbnb/legacy
+## Customizing Rules
 
-This entry point is deprecated. See [eslint-config-airbnb-base](https://npmjs.com/eslint-config-airbnb-base).
+You can override any rule in your `.eslintrc.json`:
 
-See [Airbnb's JavaScript styleguide](https://github.com/airbnb/javascript) and
-the [ESlint config docs](https://eslint.org/docs/user-guide/configuring#extending-configuration-files)
-for more information.
+```json
+{
+  "extends": "@tanqory/eslint-config",
+  "rules": {
+    "react/prop-types": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
+  }
+}
+```
 
-## Improving this config
+## React Version
 
-Consider adding test cases if you're making complicated rules changes, like anything involving regexes. Perhaps in a distant future, we could use literate programming to structure our README as test cases for our .eslintrc?
+Specify your React version in `.eslintrc.json`:
 
-You can run tests with `npm test`.
+```json
+{
+  "extends": "@tanqory/eslint-config",
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
+```
 
-You can make sure this module lints with itself using `npm run lint`.
+## Example Configurations
+
+### Create React App
+
+```json
+{
+  "extends": "@tanqory/eslint-config",
+  "env": {
+    "browser": true,
+    "es2022": true
+  }
+}
+```
+
+### React Native
+
+```json
+{
+  "extends": "@tanqory/eslint-config",
+  "env": {
+    "react-native/react-native": true
+  },
+  "plugins": ["react-native"],
+  "rules": {
+    "react-native/no-unused-styles": "error",
+    "react-native/no-inline-styles": "warn"
+  }
+}
+```
+
+### Gatsby
+
+```json
+{
+  "extends": [
+    "@tanqory/eslint-config",
+    "plugin:gatsby/recommended"
+  ]
+}
+```
+
+## Development
+
+```bash
+# Clone the repository
+git clone https://github.com/tanqory/javascript.git
+cd javascript/packages/eslint-config-airbnb
+
+# Install dependencies
+npm install
+
+# Run tests
+npm test
+
+# Run linting
+npm run lint
+```
+
+## License
+
+MIT © Tanqory
+
+## Links
+
+- [Main Documentation](https://github.com/tanqory/javascript)
+- [NPM Package](https://www.npmjs.com/package/@tanqory/eslint-config)
+- [Issue Tracker](https://github.com/tanqory/javascript/issues)

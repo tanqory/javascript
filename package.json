@@ -1,7 +1,7 @@
 {
-  "name": "airbnb-style",
-  "version": "2.0.0",
-  "description": "A mostly reasonable approach to JavaScript.",
+  "name": "@tanqory/javascript-style-guide",
+  "version": "1.0.0",
+  "description": "Tanqory's modern JavaScript style guide - A comprehensive approach to JavaScript development.",
   "scripts": {
     "preinstall": "npm run install:config && npm run install:config:base",
     "postinstall": "rm -rf node_modules/markdownlint-cli/node_modules/markdownlint",
@@ -19,12 +19,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/airbnb/javascript.git"
+    "url": "https://github.com/tanqory/javascript.git"
   },
   "keywords": [
     "style guide",
     "lint",
-    "airbnb",
+    "tanqory",
     "es6",
     "es2015",
     "es2016",
@@ -33,14 +33,17 @@
     "react",
     "jsx"
   ],
-  "author": "Harrison Shoff <hi@hshoff.com> (https://twitter.com/hshoff)",
+  "author": "Tanqory <dev@tanqory.com> (https://tanqory.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/airbnb/javascript/issues"
+    "url": "https://github.com/tanqory/javascript/issues"
   },
-  "homepage": "https://github.com/airbnb/javascript",
+  "homepage": "https://github.com/tanqory/javascript",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "devDependencies": {
-    "markdownlint": "^0.29.0",
-    "markdownlint-cli": "^0.35.0"
+    "markdownlint": "^0.38.0",
+    "markdownlint-cli": "^0.45.0"
   }
 }

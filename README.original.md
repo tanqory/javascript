@@ -1,40 +1,22 @@
-# Tanqory JavaScript Style Guide() {
+# Airbnb JavaScript Style Guide() {
 
-*A comprehensive and modern approach to JavaScript*
+*A mostly reasonable approach to JavaScript*
 
-[![npm version](https://badge.fury.io/js/%40tanqory%2Feslint-config.svg)](https://www.npmjs.com/package/@tanqory/eslint-config)
-[![CI Status](https://github.com/tanqory/javascript/workflows/CI/badge.svg)](https://github.com/tanqory/javascript/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+> **Note**: this guide assumes you are using [Babel](https://babeljs.io), and requires that you use [babel-preset-airbnb](https://npmjs.com/babel-preset-airbnb) or the equivalent. It also assumes you are installing shims/polyfills in your app, with [airbnb-browser-shims](https://npmjs.com/airbnb-browser-shims) or the equivalent.
 
-## Quick Start
+[![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
+[![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb-base.svg)](https://www.npmjs.com/package/eslint-config-airbnb-base)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-### Installation
+This guide is available in other languages too. See [Translation](#translation)
 
-```bash
-# For projects without React
-npm install --save-dev @tanqory/eslint-config-base
+Other Style Guides
 
-# For React projects  
-npm install --save-dev @tanqory/eslint-config
-```
-
-### Usage
-
-```json
-{
-  "extends": "@tanqory/eslint-config"
-}
-```
-
-See our [packages documentation](#packages) for more details.
-
-
-## Packages
-
-We provide ESLint configurations for JavaScript development:
-
-- **[@tanqory/eslint-config-base](packages/eslint-config-airbnb-base)** - Base JavaScript style guide (without React)
-- **[@tanqory/eslint-config](packages/eslint-config-airbnb)** - JavaScript style guide with React support
+  - [ES5 (Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
+  - [React](react/)
+  - [CSS-in-JavaScript](css-in-javascript/)
+  - [CSS & Sass](https://github.com/airbnb/css)
+  - [Ruby](https://github.com/airbnb/ruby)
 
 ## Table of Contents
 
@@ -4113,11 +4095,3 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 We encourage you to fork this guide and change the rules to fit your team’s style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
 
 # };
-
----
-
-<div align="center">
-  <strong>Built with ❤️ by Tanqory</strong>
-  <br>
-  <a href="https://tanqory.com">tanqory.com</a>
-</div>

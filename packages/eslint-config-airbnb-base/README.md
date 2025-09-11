@@ -1,112 +1,150 @@
-# eslint-config-airbnb-base <sup>[![Version Badge][npm-version-svg]][package-url]</sup>
+# @tanqory/eslint-config-base
 
-[![npm version](https://badge.fury.io/js/eslint-config-airbnb-base.svg)][package-url]
+[![npm version](https://badge.fury.io/js/%40tanqory%2Feslint-config-base.svg)](https://www.npmjs.com/package/@tanqory/eslint-config-base)
+[![Downloads](https://img.shields.io/npm/dm/@tanqory/eslint-config-base.svg)](https://www.npmjs.com/package/@tanqory/eslint-config-base)
 
-[![github actions][actions-image]][actions-url]
-[![License][license-image]][license-url]
-[![Downloads][downloads-image]][downloads-url]
+This package provides Tanqory's base JavaScript ESLint configuration (without React plugins) as an extensible shared config.
 
-This package provides Airbnb's base JS .eslintrc (without React plugins) as an extensible shared config.
+## Installation
+
+```bash
+npm install --save-dev @tanqory/eslint-config-base
+```
+
+### Peer Dependencies
+
+```bash
+npm install --save-dev eslint@^8.2.0 eslint-plugin-import@^2.30.0
+```
 
 ## Usage
 
-We export two ESLint configurations for your usage.
+Add to your `.eslintrc.json`:
 
-### eslint-config-airbnb-base
+```json
+{
+  "extends": "@tanqory/eslint-config-base"
+}
+```
 
-Our default export contains all of our ESLint rules, including ECMAScript 6+. It requires `eslint` and `eslint-plugin-import`.
+### Using with TypeScript
 
-1. Install the correct versions of each package, which are listed by the command:
+```json
+{
+  "extends": [
+    "@tanqory/eslint-config-base",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"]
+}
+```
 
-  ```sh
-  npm info "eslint-config-airbnb-base@latest" peerDependencies
-  ```
+## What's Included?
 
-  If using **npm 5+**, use this shortcut
+This configuration includes:
 
-  ```sh
-  npx install-peerdeps --dev eslint-config-airbnb-base
-  ```
+- **ECMAScript 2022+ Support**: Modern JavaScript features
+- **Best Practices**: Enforce good coding patterns
+- **Error Prevention**: Catch common mistakes
+- **Import/Export Rules**: Module system best practices
+- **Node.js Support**: Optimized for Node.js environments
 
-  If using **yarn**, you can also use the shortcut described above if you have npm 5+ installed on your machine, as the command will detect that you are using yarn and will act accordingly.
-  Otherwise, run `npm info "eslint-config-airbnb-base@latest" peerDependencies` to list the peer dependencies and versions, then run `yarn add --dev <dependency>@<version>` for each listed peer dependency.
+### Rule Categories
 
+1. **Best Practices** (`rules/best-practices.js`)
+   - Enforce return statements in callbacks
+   - Require default case in switch statements
+   - Disallow eval() and implied eval
+   - Require strict equality operators
 
-  If using **npm < 5**, Linux/OSX users can run
+2. **Possible Errors** (`rules/errors.js`)
+   - Disallow assignment in conditional expressions
+   - Disallow duplicate case labels
+   - Disallow empty statements
+   - Disallow irregular whitespace
 
-  ```sh
-  (
-    export PKG=eslint-config-airbnb-base;
-    npm info "$PKG@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$PKG@latest"
-  )
-  ```
+3. **Node.js and CommonJS** (`rules/node.js`)
+   - Disallow new operators with requires
+   - Enforce error handling in callbacks
+   - Disallow process.exit()
 
-  Which produces and runs a command like:
+4. **Stylistic Issues** (`rules/style.js`)
+   - Enforce consistent naming conventions
+   - Require trailing commas
+   - Enforce consistent indentation (2 spaces)
+   - Maximum line length of 100 characters
 
-  ```sh
-    npm install --save-dev eslint-config-airbnb-base eslint@^#.#.# eslint-plugin-import@^#.#.#
-  ```
+5. **Variables** (`rules/variables.js`)
+   - Disallow delete of variables
+   - Disallow unused variables
+   - Disallow use before define
 
-  If using **npm < 5**, Windows users can either install all the peer dependencies manually, or use the [install-peerdeps](https://github.com/nathanhleung/install-peerdeps) cli tool.
+6. **ES6+** (`rules/es6.js`)
+   - Require const for never reassigned variables
+   - Disallow var, use let/const instead
+   - Enforce arrow function conventions
+   - Template literals instead of string concatenation
 
-  ```sh
-  npm install -g install-peerdeps
-  install-peerdeps --dev eslint-config-airbnb-base
-  ```
+## Customizing Rules
 
-  The cli will produce and run a command like:
+You can override any rule in your `.eslintrc.json`:
 
-  ```sh
-  npm install --save-dev eslint-config-airbnb-base eslint@^#.#.# eslint-plugin-import@^#.#.#
-  ```
+```json
+{
+  "extends": "@tanqory/eslint-config-base",
+  "rules": {
+    "no-console": "off",
+    "max-len": ["error", { "code": 120 }]
+  }
+}
+```
 
-2. Add `"extends": "airbnb-base"` to your .eslintrc.
+## Alternative Configurations
 
-### eslint-config-airbnb-base/legacy
+### Legacy ES5
 
-Lints ES5 and below. Requires `eslint` and `eslint-plugin-import`.
+For legacy projects using ES5:
 
-1. Install the correct versions of each package, which are listed by the command:
+```json
+{
+  "extends": "@tanqory/eslint-config-base/legacy"
+}
+```
 
-  ```sh
-  npm info "eslint-config-airbnb-base@latest" peerDependencies
-  ```
+### Whitespace Rules Only
 
-  Linux/OSX users can run
-  ```sh
-  (
-    export PKG=eslint-config-airbnb-base;
-    npm info "$PKG" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$PKG"
-  )
-  ```
+For projects that only want whitespace rules:
 
-  Which produces and runs a command like:
+```json
+{
+  "extends": "@tanqory/eslint-config-base/whitespace"
+}
+```
 
-  ```sh
-  npm install --save-dev eslint-config-airbnb-base eslint@^#.#.# eslint-plugin-import@^#.#.#
-  ```
+## Development
 
-2. Add `"extends": "airbnb-base/legacy"` to your .eslintrc
+```bash
+# Clone the repository
+git clone https://github.com/tanqory/javascript.git
+cd javascript/packages/eslint-config-airbnb-base
 
-See [Airbnb's overarching ESLint config](https://npmjs.com/eslint-config-airbnb), [Airbnb's JavaScript styleguide](https://github.com/airbnb/javascript), and the [ESlint config docs](https://eslint.org/docs/user-guide/configuring#extending-configuration-files) for more information.
+# Install dependencies
+npm install
 
-### eslint-config-airbnb-base/whitespace
+# Run tests
+npm test
 
-This entry point only errors on whitespace rules and sets all other rules to warnings. View the list of whitespace rules [here](https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/whitespace.js).
+# Run linting
+npm run lint
+```
 
-## Improving this config
+## License
 
-Consider adding test cases if you're making complicated rules changes, like anything involving regexes. Perhaps in a distant future, we could use literate programming to structure our README as test cases for our .eslintrc?
+MIT © Tanqory
 
-You can run tests with `npm test`.
+## Links
 
-You can make sure this module lints with itself using `npm run lint`.
-
-[package-url]: https://npmjs.org/package/eslint-config-airbnb-base
-[npm-version-svg]: https://versionbadg.es/airbnb/javascript.svg
-[license-image]: https://img.shields.io/npm/l/eslint-config-airbnb-base.svg
-[license-url]: LICENSE.md
-[downloads-image]: https://img.shields.io/npm/dm/eslint-config-airbnb-base.svg
-[downloads-url]: https://npm-stat.com/charts.html?package=eslint-config-airbnb-base
-[actions-image]: https://img.shields.io/endpoint?url=https://github-actions-badge-u3jn4tfpocch.runkit.sh/airbnb/javascript
-[actions-url]: https://github.com/airbnb/javascript/actions
+- [Main Documentation](https://github.com/tanqory/javascript)
+- [NPM Package](https://www.npmjs.com/package/@tanqory/eslint-config-base)
+- [Issue Tracker](https://github.com/tanqory/javascript/issues)
