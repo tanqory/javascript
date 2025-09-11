@@ -33,8 +33,8 @@ See our [packages documentation](#packages) for more details.
 
 We provide ESLint configurations for JavaScript development:
 
-- **[@tanqory/eslint-config-base](packages/eslint-config-airbnb-base)** - Base JavaScript style guide (without React)
-- **[@tanqory/eslint-config](packages/eslint-config-airbnb)** - JavaScript style guide with React support
+- **[@tanqory/eslint-config-base](packages/eslint-config-tanqory-base)** - Base JavaScript style guide (without React)
+- **[@tanqory/eslint-config](packages/eslint-config-tanqory)** - JavaScript style guide with React support
 
 ## Table of Contents
 

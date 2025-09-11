@@ -34,7 +34,7 @@ jobs:
     - name: Check for security vulnerabilities
       run: npm audit --audit-level=moderate || true
 
-  eslint-config-airbnb:
+  eslint-config-tanqory:
     runs-on: ubuntu-latest
     
     strategy:
@@ -50,15 +50,15 @@ jobs:
         node-version: ${{ matrix.node-version }}
     
     - name: Install dependencies
-      run: cd packages/eslint-config-airbnb && npm install
+      run: cd packages/eslint-config-tanqory && npm install
     
     - name: Run linting
-      run: cd packages/eslint-config-airbnb && npm run lint
+      run: cd packages/eslint-config-tanqory && npm run lint
     
     - name: Run tests
-      run: cd packages/eslint-config-airbnb && npm test
+      run: cd packages/eslint-config-tanqory && npm test
 
-  eslint-config-airbnb-base:
+  eslint-config-tanqory-base:
     runs-on: ubuntu-latest
     
     strategy:
@@ -74,10 +74,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
     
     - name: Install dependencies
-      run: cd packages/eslint-config-airbnb-base && npm install
+      run: cd packages/eslint-config-tanqory-base && npm install
     
     - name: Run linting
-      run: cd packages/eslint-config-airbnb-base && npm run lint
+      run: cd packages/eslint-config-tanqory-base && npm run lint
     
     - name: Run tests
-      run: cd packages/eslint-config-airbnb-base && npm test
+      run: cd packages/eslint-config-tanqory-base && npm test
