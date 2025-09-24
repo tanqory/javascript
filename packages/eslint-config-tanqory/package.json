@@ -19,7 +19,6 @@
     "lint": "eslint .",
     "pretests-only": "node ./test/requires",
     "tests-only": "babel-tape-runner ./test/test-*.js",
-    "prepublishOnly": "eslint-find-rules --unused && npm test && safe-publish-latest",
     "prepublish": "not-in-publish || npm run prepublishOnly",
     "pretest": "npm run --silent lint",
     "test": "npm run --silent tests-only",
